@@ -1,0 +1,311 @@
+{
+  "spots": [
+    {
+      "id": "scenic-1",
+      "code": "1",
+      "name": "青梅山谷观景台",
+      "category": "scenic",
+      "x": 130,
+      "y": 150,
+      "image": "/static/images/creek-orchard.jpg",
+      "summary": "木构观景平台，可俯瞰整片青梅果园与对面连绵远山，傍晚看日落最佳。",
+      "distance": "距游客中心 1.8km",
+      "open": true,
+      "bookable": false,
+      "service": "观景平台 · 休息座椅"
+    },
+    {
+      "id": "craft-1",
+      "code": "2",
+      "name": "青梅手作工坊",
+      "category": "craft",
+      "x": 120,
+      "y": 350,
+      "image": "/static/images/plum-workshop.jpg",
+      "summary": "竹匾晒梅、陶罐盐渍、梅染体验都在这里，可以亲手做一罐盐渍青梅或一方梅染方巾。",
+      "distance": "距游客中心 2.6km",
+      "open": true,
+      "bookable": true,
+      "service": "手作体验 · 成品打包 · 可预约"
+    },
+    {
+      "id": "home-1",
+      "code": "3",
+      "name": "山风梅舍",
+      "category": "homestay",
+      "x": 145,
+      "y": 570,
+      "image": "/static/images/homestay-lounge.jpg",
+      "summary": "临山木屋民宿，带山景露台与晚茶，夜晚可看星空，清晨能闻到果园清香。",
+      "distance": "距游客中心 2.9km",
+      "open": true,
+      "bookable": true,
+      "service": "住宿 · 露台晚茶 · 停车位"
+    },
+    {
+      "id": "home-2",
+      "code": "4",
+      "name": "溪畔小院",
+      "category": "homestay",
+      "x": 300,
+      "y": 760,
+      "image": "/static/images/creek-teahouse.jpg",
+      "summary": "院落式小院民宿，院里设茶席与手作早餐，适合慢度假和亲子家庭长住。",
+      "distance": "距游客中心 1.2km",
+      "open": true,
+      "bookable": true,
+      "service": "住宿 · 院落茶席 · 洗烘设备"
+    },
+    {
+      "id": "food-2",
+      "code": "5",
+      "name": "农家灶台",
+      "category": "food",
+      "x": 115,
+      "y": 780,
+      "image": "/static/images/farm-kitchen.jpg",
+      "summary": "柴火灶农家饭，招牌青梅小排、腊肉炒时蔬，可提前预约亲子一起动手做晚饭。",
+      "distance": "距游客中心 1.6km",
+      "open": true,
+      "bookable": true,
+      "service": "餐饮 · 柴火灶体验 · 可预约"
+    },
+    {
+      "id": "pick-1",
+      "code": "6",
+      "name": "青梅半山果园",
+      "category": "picking",
+      "x": 400,
+      "y": 150,
+      "image": "/static/images/orchard-plum-eco.jpg",
+      "summary": "半山坡果园，坡地视野开阔，除采摘外还开设果园自然课堂与果树嫁接演示。",
+      "distance": "距游客中心 2.2km",
+      "open": true,
+      "bookable": true,
+      "service": "采摘 · 自然课堂 · 支持预约"
+    },
+    {
+      "id": "scenic-4",
+      "code": "7",
+      "name": "溪谷步道",
+      "category": "scenic",
+      "x": 450,
+      "y": 355,
+      "image": "/static/images/creek-trail.jpg",
+      "summary": "沿溪竹林石阶步道，一路浅滩、木栈桥与苔石，全程遮阴、落差小，老人小孩都能走。",
+      "distance": "距游客中心 2.4km",
+      "open": true,
+      "bookable": false,
+      "service": "林间步道 · 洗手区"
+    },
+    {
+      "id": "scenic-3",
+      "code": "8",
+      "name": "稻田观景台",
+      "category": "scenic",
+      "x": 660,
+      "y": 360,
+      "image": "/static/images/rice-terrace-viewpoint.jpg",
+      "summary": "正对层叠梯田与山下村舍，春看灌水如镜、秋看金黄山野，是全环线最开阔的机位。",
+      "distance": "距游客中心 3.2km",
+      "open": true,
+      "bookable": false,
+      "service": "观景平台 · 遮阳棚"
+    },
+    {
+      "id": "pick-2",
+      "code": "9",
+      "name": "溪谷梅园",
+      "category": "picking",
+      "x": 430,
+      "y": 565,
+      "image": "/static/images/creek-orchard.jpg",
+      "summary": "近溪谷的平缓果园，树下就是小溪与木栈桥，适合老人和孩子慢慢体验，园内支持现场称重加购。",
+      "distance": "距游客中心 2.0km",
+      "open": true,
+      "bookable": true,
+      "service": "采摘 · 洗手区 · 支持预约"
+    },
+    {
+      "id": "food-1",
+      "code": "10",
+      "name": "溪畔茶室",
+      "category": "food",
+      "x": 660,
+      "y": 565,
+      "image": "/static/images/creek-teahouse.jpg",
+      "summary": "落地窗正对溪流的木构茶室，主打青梅气泡酒、青梅气泡水与溪畔简餐。",
+      "distance": "距游客中心 2.7km",
+      "open": true,
+      "bookable": false,
+      "service": "餐饮 · 茶饮 · 卫生间"
+    },
+    {
+      "id": "scenic-2",
+      "code": "11",
+      "name": "青梅古道",
+      "category": "scenic",
+      "x": 645,
+      "y": 165,
+      "image": "/static/images/old-village-market.jpg",
+      "summary": "青石板古道穿过老村砖木老屋与晒场，两侧屋檐下摆着竹篮山货，树荫覆盖、坡度平缓。",
+      "distance": "距游客中心 2.6km",
+      "open": true,
+      "bookable": false,
+      "service": "古道徒步 · 山货补给"
+    },
+    {
+      "id": "scenic-5",
+      "code": "12",
+      "name": "江畔芦苇滩",
+      "category": "scenic",
+      "x": 620,
+      "y": 800,
+      "image": "/static/images/riverside-reeds.jpg",
+      "summary": "䢺江边平缓的浅滩芦苇荡，傍晚斜光下芦苇泛金，是散步、自然观察和水鸟观察点。",
+      "distance": "距游客中心 4.1km",
+      "open": true,
+      "bookable": false,
+      "service": "江畔滩地 · 观鸟点"
+    }
+  ],
+  "facilities": [
+    {
+      "id": "fac-center",
+      "type": "center",
+      "name": "游客中心",
+      "desc": "咨询与寄存、雨具租借、共享充电、失物招领；三条导览路线均由此出发并回到这里。",
+      "x": 320,
+      "y": 875
+    },
+    {
+      "id": "fac-parking",
+      "type": "parking",
+      "name": "生态停车场",
+      "desc": "约 200 个车位，含 12 个新能源充电桩；节假日 09:00 后建议停放在此处换乘观光车。",
+      "x": 120,
+      "y": 875
+    },
+    {
+      "id": "fac-toilet-n",
+      "type": "toilet",
+      "name": "公共卫生间 · 北门",
+      "desc": "位于青梅古道与半山果园之间，含第三卫生间与母婴护理台。",
+      "x": 530,
+      "y": 95
+    },
+    {
+      "id": "fac-toilet-c",
+      "type": "toilet",
+      "name": "公共卫生间 · 溪谷",
+      "desc": "溪谷步道出口处，含无障碍卫生间与洗手区，是溪谷线唯一的固定卫生间。",
+      "x": 540,
+      "y": 660
+    },
+    {
+      "id": "fac-medical",
+      "type": "medical",
+      "name": "山野医疗驿站",
+      "desc": "备有简易急救包、防暑与防蚊药品，兼作山地救援联络点，驻点时间 08:30 - 18:00。",
+      "x": 265,
+      "y": 460
+    },
+    {
+      "id": "fac-rest",
+      "type": "rest",
+      "name": "林间休息点",
+      "desc": "遮阳座椅、直饮水与野餐台，位于田园段与江畔段之间，适合中途补水歇脚。",
+      "x": 500,
+      "y": 830
+    },
+    {
+      "id": "fac-shop",
+      "type": "shop",
+      "name": "山货补给站",
+      "desc": "饮用水、青梅零食、防蚊喷雾与轻便雨衣补给点，可代寄明信片与快递特产。",
+      "x": 300,
+      "y": 250
+    }
+  ],
+  "routes": [
+    {
+      "id": "gr-1",
+      "routeId": "route-1",
+      "name": "A 线 · 一日青梅轻氧路线",
+      "color": "#3E7D46",
+      "desc": "缓坡环线，串起溪畔茶席、果园采摘、梯田观景与日落平台，全程不爬升，边走边坐。",
+      "points": "320,875 300,760 430,565 660,565 660,360 645,165 130,150 120,350 145,570 320,875",
+      "viaCodes": [
+        "4",
+        "9",
+        "10",
+        "8",
+        "11",
+        "1",
+        "2",
+        "3"
+      ],
+      "length": "8.6km",
+      "duration": "约 9 小时",
+      "level": "轻强度 · 缓坡与平路"
+    },
+    {
+      "id": "gr-2",
+      "routeId": "route-2",
+      "name": "B 线 · 亲子青梅研学路线",
+      "color": "#C97A2B",
+      "desc": "以 5 个自然课堂为主线的研学环线，覆盖芦苇滩、梯田、溪谷、果园与手作工坊。",
+      "points": "320,875 620,800 660,360 450,355 400,150 120,350 115,780 320,875",
+      "viaCodes": [
+        "12",
+        "8",
+        "7",
+        "6",
+        "2",
+        "5"
+      ],
+      "length": "7.2km",
+      "duration": "约 9.5 小时",
+      "level": "轻强度 · 亲子友好"
+    },
+    {
+      "id": "gr-3",
+      "routeId": "route-7",
+      "name": "C 线 · 花水湾温泉康养休闲线",
+      "color": "#2F7E8F",
+      "desc": "沿䢺江河谷铺开的康养环线：江畔慢行、老村古道、林间轻走，傍晚到花水湾泡汤后回民宿住下。",
+      "points": "320,875 620,800 660,565 645,165 450,355 145,570 320,875",
+      "viaCodes": [
+        "12",
+        "10",
+        "11",
+        "7",
+        "3"
+      ],
+      "length": "5.4km",
+      "duration": "约 26 小时（含 1 晚住宿）",
+      "level": "轻强度 · 含泡汤休整"
+    }
+  ],
+  "roads": {
+    "ring": "320,875 620,800 660,565 660,360 645,165 400,150 130,150 120,350 145,570 115,780 300,760 320,875",
+    "trail": "300,760 430,565 450,355 400,150"
+  },
+  "labels": {
+    "category": {
+      "scenic": "景点",
+      "picking": "采摘园",
+      "homestay": "民宿",
+      "craft": "手工作坊",
+      "food": "餐饮"
+    },
+    "facility": {
+      "center": "游客中心",
+      "parking": "停车场",
+      "toilet": "卫生间",
+      "medical": "医疗驿站",
+      "rest": "休息点",
+      "shop": "补给站"
+    }
+  }
+}

@@ -1,0 +1,190 @@
+server:
+  # 本机 8080 已被慧农云后端长期占用，青梅里整体改用 8081（三端前端代理同步指向 8081）
+  port: ${SERVER_PORT:8081}
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/qingmeili?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # Druid 监控配置（生产环境建议关闭）
+      stat-view-servlet:
+        enabled: ${DRUID_MONITOR_ENABLED:false}
+        url-pattern: /druid/*
+        login-username: ${DRUID_USERNAME:admin}
+        login-password: ${DRUID_PASSWORD:admin123}
+        allow: ""
+      web-stat-filter:
+        enabled: ${DRUID_MONITOR_ENABLED:false}
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+      timeout: 5000ms
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    default-property-inclusion: non_null
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 50MB
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    # 生产环境应关闭 SQL 日志输出
+    log-impl: ${MYBATIS_LOG_IMPL:org.apache.ibatis.logging.nologging.NoLoggingImpl}
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/**/*.xml
+
+# JWT 配置（生产环境必须使用环境变量）
+jwt:
+  secret: ${JWT_SECRET:qingmeili-saas-platform-jwt-secret-key-2026-must-be-at-least-256-bits-long}
+  expiration: 86400000
+
+# 允许的来源域名（生产环境必须配置）
+# 5173=C端H5, 5174=商家端H5, 5175=管理后台PC
+# 注意：localhost 与 127.0.0.1 对浏览器是两个不同 Origin，两者都需放行，
+# 否则用户用 http://127.0.0.1:5175 访问时登录等请求会被 CORS 拦截（403）
+cors:
+  allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:5173,http://localhost:5176,http://localhost:5174,http://localhost:5175,http://127.0.0.1:3000,http://127.0.0.1:5173,http://127.0.0.1:5176,http://127.0.0.1:5174,http://127.0.0.1:5175}
+
+# 短信验证码演示模式：非空时所有验证码固定为该值（H5 端提示"演示：123456"），
+# 生产环境请通过环境变量 SMS_DEMO_CODE="" 置空，恢复随机验证码
+sms:
+  demo-code: ${SMS_DEMO_CODE:123456}
+  # demo=只打日志；webhook=POST 到自建/云厂商网关
+  provider: ${SMS_PROVIDER:demo}
+  webhook-url: ${SMS_WEBHOOK_URL:}
+  webhook-token: ${SMS_WEBHOOK_TOKEN:}
+  sign-name: ${SMS_SIGN_NAME:青梅里}
+
+# ==================== 微信小程序（订阅消息） ====================
+# 未配置时所有下发安全跳过；模板 ID 在后台 sys_config（wx.template.*）维护
+wechat:
+  miniapp:
+    appid: ${WX_MINI_APPID:}
+    secret: ${WX_MINI_SECRET:}
+
+# ==================== AI Agent（LangChain4j + 阿里云百炼） ====================
+# 山野向导的回答链路：知识库命中 -> 大模型 Agent -> 规则引擎兜底。
+# 未配置 api-key 或 AI_ENABLED=false 时，前两级中的大模型会被跳过，功能自动降级，不会启动失败。
+ai:
+  enabled: ${AI_ENABLED:true}
+  dashscope:
+    # 百炼 API Key。生产环境建议只通过环境变量注入，不要提交到代码仓库
+    api-key: ${DASHSCOPE_API_KEY:sk-ws-H.PRDXHEM.hFqf.MEYCIQDBrrLUTlbhwOLu4knSmf1Lk0a5Zt1INwshpIP06ujAogIhAPwFzvtbT5gZ9qxJfvkDeE0uQ0Vdl0fCzs4rfyWc2fJ8}
+    # DashScope 的 OpenAI 兼容端点，换模型只需改下面这行 model
+    base-url: ${DASHSCOPE_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+    model: ${DASHSCOPE_MODEL:qwen-plus}
+    # 向导类问答要的是稳，温度取低值
+    temperature: 0.3
+    max-tokens: 1024
+    timeout: 60s
+    max-retries: 1
+    # 排查问题时打开，会把请求/响应体打进日志（含用户提问）
+    log-requests: ${DASHSCOPE_LOG_REQUESTS:false}
+    log-responses: ${DASHSCOPE_LOG_RESPONSES:false}
+
+  # ---------------------------------------------------------------------------
+  # 知识库向量化（RAG 语义检索）
+  # 把知识库检索从「2-gram 字面重叠」升级为「向量余弦相似度 + 关键词融合」，
+  # 能召回与文档措辞不一致的口语化提问（如「我临时去不了了」→ 退改说明）。
+  # 关掉 embedding.enabled 即退回原有的关键词检索，对话模型不受影响。
+  # 新增表 kb_embedding 见 数据库脚本/16-知识库向量化.sql
+  # ---------------------------------------------------------------------------
+  embedding:
+    enabled: ${AI_EMBEDDING_ENABLED:true}
+    # 留空则复用上面 dashscope 的 api-key / base-url（同一份百炼 Key）
+    api-key: ${AI_EMBEDDING_API_KEY:}
+    base-url: ${AI_EMBEDDING_BASE_URL:}
+    model: ${AI_EMBEDDING_MODEL:text-embedding-v3}
+    dimensions: 1024
+    # 百炼服务端硬性上限 10 条/次，改大无效
+    batch-size: 10
+    timeout: 30s
+    max-retries: 1
+    log-requests: false
+    # 检索返回条数与命中阈值（融合分低于 min-score 视为未命中）
+    # 阈值经实测校准：正确答案语义分 0.61-0.80，不相关文档上限约 0.59。
+    # text-embedding-v3 的余弦区间偏窄，换嵌入模型后需要重新标定这两个值。
+    top-k: 3
+    min-score: 0.58
+    # 无大模型时"命中知识库"的判定阈值，比 min-score 再严格一档
+    rule-match-score: 0.60
+    # 正文分片与重叠字数
+    chunk-size: 300
+    chunk-overlap: 60
+    # 启动后自动做一次增量同步（只重算版本号变化/缺失的文档，无变更时不调接口）
+    sync-on-startup: true
+
+    # ---- 上下文接地：把语义命中的知识库正文注入大模型（解决"只看得到标题就编细节"）----
+    # 关闭后只注入标题列表（旧行为）
+    grounding-enabled: ${AI_EMBEDDING_GROUNDING_ENABLED:true}
+    # 只注入最相关的几篇正文；库里有几十条，全量喂会稀释注意力
+    grounding-top-k: 2
+    # 与 min-score 同口径（过滤的是融合分，不是纯余弦）。实测正确答案 0.61+、噪声带 0.54-0.60。
+    # 别为了"多给点参考"调低 —— 会把噪声文档灌进上下文。
+    grounding-min-score: 0.58
+    # 单篇正文注入上限，防止将来出现超长文档撑爆上下文
+    grounding-max-chars: 500
+
+  # ---------------------------------------------------------------------------
+  # 天气查询（和风天气）
+  # 让向导能回答「今天天气怎么样」「下雨天还能采摘吗」这类问题。
+  # host 留空即整体不启用：不注册 Bean，工具如实告知"未配置"，对话不受影响。
+  # ---------------------------------------------------------------------------
+  weather:
+    enabled: ${AI_WEATHER_ENABLED:true}
+    # 和风天气【专属 API Host】，形如 abc1234xyz.re.qweatherapi.com
+    # ！！！它不是凭据 ID。请在控制台「设置」页复制，别照抄网上教程里的
+    # devapi.qweather.com —— 该域名已于 2026-01-01 停服，会直接返回 403 Invalid Host。
+    # 留空则整体不启用（不注册 Bean，对话不受影响）。
+    host: ${QWEATHER_API_HOST:m87fc4t4br.re.qweatherapi.com}
+    # 凭据里的 API Key。与上面 DASHSCOPE_API_KEY 同样的处理方式：
+    # yml 内给一份演示默认值以保证"解压即用"，正式部署请用环境变量覆盖，
+    # 或直接改成你的凭据（该 Key 属于敏感信息，公开仓库请勿提交）。
+    key: ${QWEATHER_API_KEY:10e9d1d598744ebcae056d0a3905d6fd}
+    # 查询坐标「经度,纬度」。青梅里在成都大邑一带
+    location: "${AI_WEATHER_LOCATION:103.51,30.58}"
+    # 给大模型看的地点名
+    label: ${AI_WEATHER_LABEL:青梅里（成都大邑）}
+    # 是否一并取未来 3 天预报
+    forecast: true
+    # 结果缓存时长。天气更新很慢（实况 10~40 分钟一次），缓存既保证不过期，
+    # 又能把同一地点的重复提问挡在缓存里，省下免费额度
+    cache-ttl: 30m
+    # 单次请求超时。天气是锦上添花的信息，宁可快速失败也不要拖慢对话
+    timeout: 8s
+
+logging:
+  level:
+    root: ${LOG_LEVEL:info}
+    com.qingmeili: ${LOG_LEVEL:info}
+    com.qingmeili.mapper: ${LOG_LEVEL:info}

@@ -1,0 +1,32 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+
+# Logs / 运行时产物
+*.log
+err.txt
+logs/
+
+# 本地环境与密钥
+.env
+*.local
+application-local.yml
+application-local.properties
+
+# System
+.DS_Store
+Thumbs.db

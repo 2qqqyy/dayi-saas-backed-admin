@@ -1,0 +1,75 @@
+{
+  "heroImage": "/static/images/orchard-plum-eco-w169.jpg",
+  "features": [
+    {
+      "title": "山野导览",
+      "desc": "经典路线 · 语音讲解",
+      "path": "pages/travel/map",
+      "d": "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM15.5 9l-2 4-4 2 2-4 4-2z",
+      "bg": "#EAF3E6",
+      "color": "#4F8F52"
+    },
+    {
+      "title": "采摘预约",
+      "desc": "实时档期 · 在线选场",
+      "path": "pages/travel/picking",
+      "d": "M4 20c0-9 4-15 14-15 0 9-4 15-14 15zM4 20c3-6 7-11 12-14",
+      "bg": "#F6EDDA",
+      "color": "#8B6F47"
+    },
+    {
+      "title": "民宿预订",
+      "desc": "实景房源 · 含双早",
+      "path": "pages/travel/homestay",
+      "d": "M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3z",
+      "bg": "#EEF3E8",
+      "color": "#79A95A"
+    },
+    {
+      "title": "乡村好物",
+      "desc": "产地直发 · 当季现货",
+      "path": "pages/mall/index",
+      "d": "M6 7h12l1.2 13H4.8L6 7zM9 7a3 3 0 0 1 6 0",
+      "bg": "#FDEED9",
+      "color": "#D96A3B"
+    }
+  ],
+  "sections": {
+    "routes": {
+      "title": "推荐路线",
+      "subtitle": "按体力和时间自由选择，玩法各不一样",
+      "more": "pages/travel/index"
+    },
+    "picking": {
+      "title": "采摘体验",
+      "subtitle": "青梅正当季",
+      "more": "pages/travel/picking"
+    },
+    "homestay": {
+      "title": "特色民宿",
+      "subtitle": "山野里睡个好觉",
+      "more": "pages/travel/homestay"
+    },
+    "season": {
+      "title": "季节推荐",
+      "subtitle": "把青梅季带回家",
+      "more": ""
+    },
+    "product": {
+      "title": "农产品商城",
+      "subtitle": "乡村好物直送",
+      "more": "pages/mall/index"
+    }
+  },
+  "season": {
+    "image": "/static/images/dried-plum.jpg",
+    "title": "青梅成熟季 · 现摘现发",
+    "desc": "青梅干 / 青梅酒 / 农家蜂蜜，产地直发",
+    "path": "pages/mall/index"
+  },
+  "aiEntry": {
+    "title": "AI 山野向导",
+    "desc": "帮你规划行程、推荐好物",
+    "path": "pages/ai/index"
+  }
+}
